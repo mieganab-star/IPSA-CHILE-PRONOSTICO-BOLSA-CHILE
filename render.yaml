@@ -1,0 +1,6 @@
+# Updated render.yaml
+
+# Build command path corrected
+
+build:
+  command: cd correct_directory && npm install
