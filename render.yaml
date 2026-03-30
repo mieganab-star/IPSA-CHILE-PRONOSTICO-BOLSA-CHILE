@@ -1,6 +1,25 @@
-# Updated render.yaml
+# En tu máquina
+cd IPSA-CHILE-PRONOSTICO-BOLSA-CHILE
 
-# Build command path corrected
+# Abre render.yaml con cualquier editor y cambia el contenido
+nano render.yaml
+# o
+code render.yaml
+# o con cat
+cat > render.yaml << 'EOF'
+services:
+  - type: web
+    name: ipsa-backend
+    runtime: python311
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port 8000
+    envVars:
+      - key: ENVIRONMENT
+        value: production
+EOF
 
-build:
-  command: cd correct_directory && npm install
+# Luego:
+git add render.yaml
+git commit -m "Fix render.yaml"
+git push origin main
